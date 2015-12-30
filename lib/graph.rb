@@ -40,6 +40,7 @@ class Graph
   end
 
   def bfs_traverse_from(root_node)
+    counter = 1
     root_node = root_node.to_s.to_sym
 
     # initialize
@@ -47,8 +48,10 @@ class Graph
     bfs_graph.keys.each do |key|
       bfs_graph[key][:parent] = nil
       bfs_graph[key][:distance] = nil
+      bfs_graph[key][:found_at] = nil
     end
     bfs_graph[root_node][:distance] = 0
+    bfs_graph[root_node][:found_at] = counter
 
     # traverse
     queue = []
@@ -59,6 +62,8 @@ class Graph
         unless bfs_graph[child][:distance]
           bfs_graph[child][:parent] = parent
           bfs_graph[child][:distance] = bfs_graph[parent][:distance] + (bfs_graph[parent][:children][child][:length] || 1)
+          counter += 1
+          bfs_graph[child][:found_at] = counter
           queue.push child
         end
       end

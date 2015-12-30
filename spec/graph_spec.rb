@@ -184,22 +184,22 @@ describe Graph do
   describe "#bfs_traverse_from" do
     it "retuns resultant graph data on BFS traversal from given node as root node" do
       graph1_on_bfs_traversal_from_A = {
-        :A=>{:children=>{:B=>{:length=>5}, :D=>{:length=>5}, :E=>{:length=>7}}, :parent=>nil, :distance=>0},
-        :B=>{:children=>{:C=>{:length=>4}}, :parent=>:A, :distance=>5},
-        :C=>{:children=>{:D=>{:length=>8}, :E=>{:length=>2}}, :parent=>:B, :distance=>9},
-        :D=>{:children=>{:C=>{:length=>8}, :E=>{:length=>6}}, :parent=>:A, :distance=>5},
-        :E=>{:children=>{:B=>{:length=>3}}, :parent=>:A, :distance=>7},
-        :K=>{:children=>{:L=>{:length=>2}}, :parent=>nil, :distance=>nil},
-        :L=>{:children=>{}, :parent=>nil, :distance=>nil}
+        :A=>{:children=>{:B=>{:length=>5}, :D=>{:length=>5}, :E=>{:length=>7}}, :parent=>nil, :distance=>0, :found_at=>1},
+        :B=>{:children=>{:C=>{:length=>4}}, :parent=>:A, :distance=>5, :found_at=>2},
+        :C=>{:children=>{:D=>{:length=>8}, :E=>{:length=>2}}, :parent=>:B, :distance=>9, :found_at=>5},
+        :D=>{:children=>{:C=>{:length=>8}, :E=>{:length=>6}}, :parent=>:A, :distance=>5, :found_at=>3},
+        :E=>{:children=>{:B=>{:length=>3}}, :parent=>:A, :distance=>7, :found_at=>4},
+        :K=>{:children=>{:L=>{:length=>2}}, :parent=>nil, :distance=>nil, :found_at=>nil},
+        :L=>{:children=>{}, :parent=>nil, :distance=>nil, :found_at=>nil}
       }
       graph2_on_bfs_traversal_from_A = {
-        :A=>{:children=>{:B=>{:length=>1}, :D=>{:length=>1}, :E=>{:length=>1}}, :parent=>nil, :distance=>0},
-        :B=>{:children=>{:C=>{:length=>1}}, :parent=>:A, :distance=>1},
-        :C=>{:children=>{:D=>{:length=>1}, :E=>{:length=>1}}, :parent=>:B, :distance=>2},
-        :D=>{:children=>{:C=>{:length=>1}, :E=>{:length=>1}}, :parent=>:A, :distance=>1},
-        :E=>{:children=>{:B=>{:length=>1}}, :parent=>:A, :distance=>1},
-        :K=>{:children=>{:L=>{:length=>1}}, :parent=>nil, :distance=>nil},
-        :L=>{:children=>{}, :parent=>nil, :distance=>nil}
+        :A=>{:children=>{:B=>{:length=>1}, :D=>{:length=>1}, :E=>{:length=>1}}, :parent=>nil, :distance=>0, :found_at=>1},
+        :B=>{:children=>{:C=>{:length=>1}}, :parent=>:A, :distance=>1, :found_at=>2},
+        :C=>{:children=>{:D=>{:length=>1}, :E=>{:length=>1}}, :parent=>:B, :distance=>2, :found_at=>5},
+        :D=>{:children=>{:C=>{:length=>1}, :E=>{:length=>1}}, :parent=>:A, :distance=>1, :found_at=>3},
+        :E=>{:children=>{:B=>{:length=>1}}, :parent=>:A, :distance=>1, :found_at=>4},
+        :K=>{:children=>{:L=>{:length=>1}}, :parent=>nil, :distance=>nil, :found_at=>nil},
+        :L=>{:children=>{}, :parent=>nil, :distance=>nil, :found_at=>nil}
       }
       expect(graph1.bfs_traverse_from :A).to eq(graph1_on_bfs_traversal_from_A)
       expect(graph2.bfs_traverse_from :A).to eq(graph2_on_bfs_traversal_from_A)
